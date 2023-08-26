@@ -12,8 +12,6 @@ public class MoveAction : BaseAction
     private Queue<GridPosition> gridTargets = new();
     private List<GridPosition> paths = new();
     private Pathfinding pathfinding;
-
-
     bool setNextTarget = false;
 
     private void Awake()
@@ -39,6 +37,9 @@ public class MoveAction : BaseAction
             transform.position += moveSpeed * Time.deltaTime * moveDirection;
 
             unit.animatorController.SetBool("isWalking", true);
+
+            float rotatingSpeed = 10f;
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotatingSpeed);
         }
         else
         {

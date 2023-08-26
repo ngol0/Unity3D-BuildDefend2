@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622547c702e365c46a0a5dabcd0bc8f9, type: 3}
   m_Name: GridStats
   m_EditorClassIdentifier: 
-  gridWidth: 10
-  gridHeight: 7
+  gridWidth: 20
+  gridHeight: 5
   cellSize: 10
   obstacleMask:
     serializedVersion: 2

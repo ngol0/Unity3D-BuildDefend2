@@ -12,6 +12,7 @@ public class Unit : InteractableItem
     private void Start()
     {
         actionArrays = GetComponents<BaseAction>();
+        transform.forward = Vector3.right;
     }
 
     public void SetCurrentGridPos(GridPosition newGridPos)

@@ -18,6 +18,9 @@ public class CameraHandler : MonoBehaviour
     [SerializeField] float zoomSpeed = 10f;
     [SerializeField] float moveSpeed = 30f;
 
+    Vector2 cameraPos;
+    float originalX;
+
     private float curFovSize;
     private float targetFovSize;
 
@@ -25,6 +28,9 @@ public class CameraHandler : MonoBehaviour
     {
         curFovSize = virtualCamera.m_Lens.FieldOfView;
         targetFovSize = curFovSize;
+
+        cameraPos = new Vector2(transform.position.x, transform.position.z);
+        originalX = transform.position.x;
     }
 
     private void Update()
@@ -35,9 +41,11 @@ public class CameraHandler : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        
+        var deltaX = moveInput.x * moveSpeed * Time.deltaTime;
 
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        cameraPos.x = Mathf.Clamp(cameraPos.x + deltaX, originalX, 120);
+        transform.position = cameraPos;
     }
 
     private void HandleZoom()
