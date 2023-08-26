@@ -52,5 +52,5 @@
         "temp/":true,
         "Temp/":true
     },
-    "dotnet.defaultSolution": "unity3D-buildDefense.sln"
+    "dotnet.defaultSolution": "unity3D-buildDefense-v2.sln"
 }
