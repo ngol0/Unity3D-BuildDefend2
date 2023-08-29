@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ConfirmationPanelUI : MonoBehaviour
 {
-    [SerializeField] GameplayController controller;
+    [SerializeField] ItemPlacement itemPlacement;
     [SerializeField] GameObject canvas;
 
     private void OnEnable() 
     {
-        controller.OnTryPlacingResourceItem += SetPanelActive;
-        controller.OnDoneDeciding += DeactivateUI;
+        itemPlacement.OnTryPlacingResourceItem += SetPanelActive;
+        itemPlacement.OnDoneDeciding += DeactivateUI;
     }
 
     public void SetPanelActive()

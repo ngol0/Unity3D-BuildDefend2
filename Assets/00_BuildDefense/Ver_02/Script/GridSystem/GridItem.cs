@@ -7,6 +7,7 @@ public class GridItem
     private GridSystem<GridItem> gridSystem;
     private GridPosition gridPosition;
     private IGameItem item;
+    public IGameItem Item => item;
 
     public GridItem(GridSystem<GridItem> gridSystem, GridPosition gridPosition)
     {

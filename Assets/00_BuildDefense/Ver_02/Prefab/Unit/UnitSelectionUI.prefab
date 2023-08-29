@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3544770983279120798}
   - component: {fileID: 2518389789829067182}
   - component: {fileID: 8706764596476744011}
+  - component: {fileID: 1679165932756121673}
+  - component: {fileID: 1390223770993579771}
   m_Layer: 10
   m_Name: UnitSelectionUI
   m_TagString: Untagged
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 9198084897189856559}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 10, y: 10, z: 19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,3 +115,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   mesh: {fileID: 3544770983279120798}
+--- !u!65 &1679165932756121673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198084897189856559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 6.123234e-17}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1390223770993579771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198084897189856559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec36b8366bcebf54c85a273b94e3bd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 0}

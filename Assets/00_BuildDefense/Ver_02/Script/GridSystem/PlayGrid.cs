@@ -41,6 +41,11 @@ public class PlayGrid : GridBase
         return GetGridItem(gridPos).IsPlaceable();
     }
 
+    public bool HasUnit(GridPosition gridPos)
+    {
+        return GetGridItem(gridPos).Item is Unit;
+    }
+
     public GridItem GetGridItem(GridPosition gridPosition) => gridSystem.GetGridItem(gridPosition);
     public override GridPosition GetGridPosition(Vector3 worldPos) => gridSystem.GetGridPosition(worldPos);
     public override Vector3 GetWorldPosition(GridPosition gridPos) => gridSystem.GetWorldPosition(gridPos);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitActionController : MonoBehaviour
 {
     [SerializeField] Unit selectedUnit;
-    [SerializeField] Pathfinding pathfinding;
+    BaseAction currentAction;
 
     public System.Action<bool> OnSelectedUnit;
 
@@ -20,13 +20,13 @@ public class UnitActionController : MonoBehaviour
     public void MoveAhead()
     {
         if (selectedUnit==null) return;
-        selectedUnit.GetAction<MoveAction>().TakeAction(pathfinding);
+        selectedUnit.GetAction<MoveAction>().StartAction();
     }
 
     public void StopMoving()
     {
         if (selectedUnit==null) return; 
-        selectedUnit.GetAction<MoveAction>().Cancel();
+        selectedUnit.GetAction<IdleAction>().StartAction();
     }
 
     public void MoveUp()

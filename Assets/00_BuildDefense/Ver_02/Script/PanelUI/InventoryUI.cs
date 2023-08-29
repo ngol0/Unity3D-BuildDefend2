@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject guiMain;
 
     [Header("Logic ref")]
-    [SerializeField] GameplayController gameplayLogic;
+    [SerializeField] ItemPlacement itemPlacement;
 
     [Header("InventorySO")]
     [SerializeField] InventorySO inventory;
@@ -24,10 +24,10 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable() 
     {
-        gameplayLogic.OnItemPlaced += OnDonePlaced;
-        gameplayLogic.OnCancelPlacedItem += ResetUI;
-        gameplayLogic.OnTryPlacingResourceItem += DeactivateUI;
-        gameplayLogic.OnDoneDeciding += SetUIActive;
+        itemPlacement.OnItemPlaced += OnDonePlaced;
+        itemPlacement.OnCancelPlacedItem += ResetUI;
+        itemPlacement.OnTryPlacingResourceItem += DeactivateUI;
+        itemPlacement.OnDoneDeciding += SetUIActive;
 
         inventory.OnAddComplete += InitNewItem;
     }
@@ -59,7 +59,7 @@ public class InventoryUI : MonoBehaviour
         if (btn == currentButton) //when clicked onto the selected button -> unselect
         {
             currentButton.SetSelectedActive(false);
-            gameplayLogic.SetItemToPlaceInfo(null);
+            itemPlacement.SetItemToPlaceInfo(null);
             currentButton = null;
             return;
         }
@@ -71,8 +71,7 @@ public class InventoryUI : MonoBehaviour
         btn.SetSelectedActive(true);
         currentButton = btn;
 
-        gameplayLogic.SetItemToPlaceInfo(currentButton.ItemData); //set item to place
-        gameplayLogic.CancelItemSelection(); //cancel item selection if one is selected
+        itemPlacement.SetItemToPlaceInfo(currentButton.ItemData); //set item to place
     }
 
     private void DeactivateUI()

@@ -7,7 +7,9 @@ public class Unit : InteractableItem
 {
     BaseAction[] actionArrays;
     public Animator animatorController;
-    private Pathfinding pathfindingGrid;
+    Pathfinding pathfindingGrid;
+    public Pathfinding PathfindingGrid => pathfindingGrid;
+    public ActionScheduler actionScheduler;
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class Unit : InteractableItem
         curGridPos = newGridPos;
     }
 
-    public override void SetGridData(PlayGrid gridSystem, Pathfinding pathGrid = null)
+    public override void SetGridData(PlayGrid gridSystem, Pathfinding pathGrid)
     {
         base.SetGridData(gridSystem);
         pathfindingGrid = pathGrid;
@@ -37,7 +39,7 @@ public class Unit : InteractableItem
             }
         }
 
-        return null;
+        return default; //todo: ?
     }
 
     //----testing----//

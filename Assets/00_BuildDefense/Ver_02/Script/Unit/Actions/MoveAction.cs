@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : BaseAction
+public class MoveAction : MonoBehaviour, BaseAction
 {
-    private Vector3 targetPos;
-    private Unit unit;
     [SerializeField] private float moveSpeed = 2f;
-    private Vector3 moveDirection;
     private PlayGrid playGrid;
+    private Unit unit;
+    private Vector3 targetPos;
+    private Vector3 moveDirection;
+    
     private Queue<GridPosition> gridTargets = new();
     private List<GridPosition> paths = new();
     private Pathfinding pathfinding;
-    bool setNextTarget = false;
+    private bool setNextTarget = false;
 
     private void Awake()
     {
@@ -22,15 +24,26 @@ public class MoveAction : BaseAction
     private void Start()
     {
         unit = GetComponent<Unit>();
+        unit.actionScheduler = GetComponent<ActionScheduler>();
         playGrid = unit.PlayGrid;
+        pathfinding = unit.PathfindingGrid;
     }
 
+    public void StartAction()
+    {
+        unit.actionScheduler.StartAction(this);
+        SetPath();
+    }
 
     private void Update()
     {
         //Debug.Log(Vector3.Distance(transform.position, targetPos));
-        DequeueGridTarget();
+        SetNextWaypoint();
+        MoveToWaypoint();
+    }
 
+    private void MoveToWaypoint()
+    {
         if (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
             moveDirection = (targetPos - transform.position).normalized;
@@ -47,39 +60,63 @@ public class MoveAction : BaseAction
         }
     }
 
-    void DequeueGridTarget()
+    void SetNextWaypoint()
     {
+        //endpoint
+        if (gridTargets.Count == 0)
+        {
+            unit.animatorController.SetBool("isWalking", false);
+
+            //on done moving
+            
+        }
+
         if (gridTargets.Count > 0 && setNextTarget)
         {
             var gridTarget = gridTargets.Dequeue();
-            if (pathfinding.IsNodeWalkable(gridTarget))
-            {
-                targetPos = playGrid.GetWorldPosition(gridTarget);
-                setNextTarget = false;
-
-                //when target is set -> set current grid pos for unit
-                playGrid.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
-                pathfinding.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
-                unit.SetCurrentGridPos(gridTarget);
-            }
-            else
-            {
-                Cancel();
-            }
-        }
-        else if (gridTargets.Count == 0)
-        {
-            unit.animatorController.SetBool("isWalking", false);
+            CheckObstaclesOnNextNode(gridTarget);
+            setNextTarget = false;
         }
     }
 
-    public void SetPath(List<GridPosition> positionTargets)
+    //todo: find another more efficient way??
+    private void CheckObstaclesOnNextNode(GridPosition gridTarget)
+    {
+        if (HasUnitOnTarget(gridTarget)) return;
+        if (pathfinding.IsNodeWalkable(gridTarget))
+        {
+            targetPos = playGrid.GetWorldPosition(gridTarget);
+
+            //when target is set -> set current grid pos for unit
+            playGrid.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
+            pathfinding.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
+            unit.SetCurrentGridPos(gridTarget);
+        }
+        else
+        {
+            SetPath();
+        }
+    }
+
+    private bool HasUnitOnTarget(GridPosition gridPos)
+    {
+        if (playGrid.HasUnit(gridPos))
+        {
+            Cancel(); //todo: change into wait action?
+            return true;
+        }
+        return false;
+    }
+
+    public void EnqueuePathPoints(List<GridPosition> positionTargets)
     {
         if (positionTargets == null) 
         {
             Debug.Log(":::Can't find path???");
             return;
         }
+
+        gridTargets.Clear();
         
         for (int i = 1; i < positionTargets.Count; i++)
         {
@@ -87,15 +124,13 @@ public class MoveAction : BaseAction
         }
     }
 
-    public void TakeAction(Pathfinding pathfinding)
+    private void SetPath()
     {
-        this.pathfinding = pathfinding;
         GridPosition destination = GetDestination(unit.CurGridPos);
-
-        Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
+        //Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
         
         paths = pathfinding.FindPath(unit.CurGridPos, destination);
-        SetPath(paths);
+        EnqueuePathPoints(paths);
     }
 
     public GridPosition GetDestination(GridPosition curGridPos)
