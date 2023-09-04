@@ -9,9 +9,10 @@ public class FilterEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.GetComponent<Enemy>())
+        var enemy = other.GetComponent<Health>();
+        if (enemy && !enemy.IsDead())
         {
-            unit.GetAction<FightAction>().StartAction();
+            unit.GetAction<FightAction>().StartAction(enemy);
         }
     }
 }

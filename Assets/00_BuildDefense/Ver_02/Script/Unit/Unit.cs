@@ -11,9 +11,13 @@ public class Unit : InteractableItem
     public Pathfinding PathfindingGrid => pathfindingGrid;
     public ActionScheduler actionScheduler;
 
-    private void Start()
+    private void Awake()
     {
         actionArrays = GetComponents<BaseAction>();
+    }
+
+    private void Start() 
+    {
         transform.forward = Vector3.right;
     }
 

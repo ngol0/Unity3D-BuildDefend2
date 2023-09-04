@@ -5,5 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InteractableData/Unit")]
 public class UnitData : InteractableData
 {
+    public float health;
+
     
 }

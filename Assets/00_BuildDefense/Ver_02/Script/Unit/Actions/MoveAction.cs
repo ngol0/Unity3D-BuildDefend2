@@ -10,21 +10,22 @@ public class MoveAction : MonoBehaviour, BaseAction
     private Unit unit;
     private Vector3 targetPos;
     private Vector3 moveDirection;
-    
+
     private Queue<GridPosition> gridTargets = new();
     private List<GridPosition> paths = new();
     private Pathfinding pathfinding;
     private bool setNextTarget = false;
+    public Action OnDoneMoving;
 
     private void Awake()
     {
-        targetPos = transform.position;
+        unit = GetComponent<Unit>();
+        unit.actionScheduler = GetComponent<ActionScheduler>();
     }
 
     private void Start()
     {
-        unit = GetComponent<Unit>();
-        unit.actionScheduler = GetComponent<ActionScheduler>();
+        targetPos = transform.position;
         playGrid = unit.PlayGrid;
         pathfinding = unit.PathfindingGrid;
     }
@@ -62,19 +63,21 @@ public class MoveAction : MonoBehaviour, BaseAction
 
     void SetNextWaypoint()
     {
-        //endpoint
-        if (gridTargets.Count == 0)
+        if (setNextTarget)
         {
-            unit.animatorController.SetBool("isWalking", false);
+            if (gridTargets.Count > 0)
+            {
+                var gridTarget = gridTargets.Dequeue();
+                CheckObstaclesOnNextNode(gridTarget);
+            }
+            //endpoint
+            if (gridTargets.Count == 0)
+            {
+                unit.animatorController.SetBool("isWalking", false);
 
-            //on done moving
-            
-        }
-
-        if (gridTargets.Count > 0 && setNextTarget)
-        {
-            var gridTarget = gridTargets.Dequeue();
-            CheckObstaclesOnNextNode(gridTarget);
+                //on done moving
+                OnDoneMoving?.Invoke();
+            }
             setNextTarget = false;
         }
     }
@@ -89,7 +92,7 @@ public class MoveAction : MonoBehaviour, BaseAction
 
             //when target is set -> set current grid pos for unit
             playGrid.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
-            pathfinding.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
+            //pathfinding.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
             unit.SetCurrentGridPos(gridTarget);
         }
         else
@@ -110,14 +113,14 @@ public class MoveAction : MonoBehaviour, BaseAction
 
     public void EnqueuePathPoints(List<GridPosition> positionTargets)
     {
-        if (positionTargets == null) 
+        if (positionTargets == null)
         {
             Debug.Log(":::Can't find path???");
             return;
         }
 
         gridTargets.Clear();
-        
+
         for (int i = 1; i < positionTargets.Count; i++)
         {
             gridTargets.Enqueue(positionTargets[i]);
@@ -128,7 +131,7 @@ public class MoveAction : MonoBehaviour, BaseAction
     {
         GridPosition destination = GetDestination(unit.CurGridPos);
         //Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
-        
+
         paths = pathfinding.FindPath(unit.CurGridPos, destination);
         EnqueuePathPoints(paths);
     }
