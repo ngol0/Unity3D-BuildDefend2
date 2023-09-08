@@ -36,6 +36,11 @@ public class ResourceGeneratorRepresentation : MonoBehaviour
         }
     }
 
+    public void DisableText()
+    {
+        resourcesAmount.gameObject.SetActive(false);
+    }
+
     public float GetResourceGeneratedPerSecond()
     {
         if (nearByResourceNode)

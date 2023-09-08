@@ -1,21 +1,22 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Lam.DefenderBuilder.Enemies;
 using UnityEngine;
 
-public class FightAction : MonoBehaviour, BaseAction
+public class FightAction : BaseAction
 {
+
     private Unit unit;
     private Health enemy;
     private bool canAttack = false;
 
-    private void Start() 
+    private void Start()
     {
         unit = GetComponent<Unit>();
-        unit.GetAction<MoveAction>().OnDoneMoving += CanAttack;
+        unit.GetAction<MoveAction>().OnComplete += CanAttack;
     }
 
-    private void Update() 
+    private void Update()
     {
         if (canAttack)
         {
@@ -24,12 +25,13 @@ public class FightAction : MonoBehaviour, BaseAction
     }
 
     public void StartAction(Health enemy)
-    { 
+    {
         Debug.Log(":::Prepare to attack");
-        unit.actionScheduler.StartAction(this);
+        unit.actionScheduler.QueueAction(this);
 
         this.enemy = enemy;
         enemy.OnDie += Cancel;
+        enemy.OnClearPath += OnComplete;
     }
 
     private void TriggerAttack()
@@ -51,7 +53,7 @@ public class FightAction : MonoBehaviour, BaseAction
         TriggerAttack();
     }
 
-    public void Cancel()
+    public override void Cancel()
     {
         unit.animatorController.ResetTrigger("startAttack");
         unit.animatorController.SetTrigger("stopAttack");
@@ -64,5 +66,15 @@ public class FightAction : MonoBehaviour, BaseAction
     private void Hit()
     {
         enemy.TakeDamage(gameObject, 5f);
+    }
+
+    public override void Wait()
+    {
+
+    }
+
+    public override void Presume()
+    {
+
     }
 }

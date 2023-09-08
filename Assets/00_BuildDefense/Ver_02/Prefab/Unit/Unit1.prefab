@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b678504d6ff1c4c983fd7861900c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionType: 4
 --- !u!114 &2778431855461614380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ff96419ab93364b8f26afd9a1f1ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionType: 0
 --- !u!114 &2778431855461614379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1458a2ced80d4886bce1a03c01b418c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionType: 1
   moveSpeed: 3
 --- !u!114 &2778431855461614378
 MonoBehaviour:
@@ -284,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}
   animatorController: {fileID: 2619561696265496506}
-  actionScheduler: {fileID: 0}
+  actionScheduler: {fileID: 2778431855461614378}
 --- !u!114 &5372640243740654964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2775,7 +2778,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 1, z: 10}
+  m_Size: {x: 8, y: 1, z: 10}
   m_Center: {x: 0, y: 2, z: 10}
 --- !u!114 &8889894101464938224
 MonoBehaviour:

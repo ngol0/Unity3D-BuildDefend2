@@ -19,7 +19,9 @@ public class ResourceGenerator : MonoBehaviour
     public void SetMaxTimer()
     {
         enabled = true;
-        maxTimer = GetComponent<ResourceGeneratorRepresentation>().MaxTimer;
+        var resourceOverlay = GetComponent<ResourceGeneratorRepresentation>();
+        maxTimer = resourceOverlay.MaxTimer;
+        resourceOverlay.DisableText();
     }
 
     //increase the amount of resource after a certain amt of time (i.e: 1sec)

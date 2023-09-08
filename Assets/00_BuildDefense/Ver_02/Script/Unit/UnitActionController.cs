@@ -5,16 +5,14 @@ using UnityEngine;
 public class UnitActionController : MonoBehaviour
 {
     [SerializeField] Unit selectedUnit;
-    BaseAction currentAction;
-
-    public System.Action<bool> OnSelectedUnit;
+    public System.Action<Unit> OnSelectedUnit;
 
     public void SetSelectedUnit(InteractableItem item)
     {
         if (selectedUnit == item) return;
         selectedUnit = (item is Unit) ? item as Unit : null;
 
-        OnSelectedUnit?.Invoke(selectedUnit!=null); //set unit action panel
+        OnSelectedUnit?.Invoke(selectedUnit); //set unit action panel
     }
 
     public void MoveAhead()
@@ -23,15 +21,15 @@ public class UnitActionController : MonoBehaviour
         selectedUnit.GetAction<MoveAction>().StartAction();
     }
 
-    public void StopMoving()
+    public void Idle()
     {
         if (selectedUnit==null) return; 
         selectedUnit.GetAction<IdleAction>().StartAction();
     }
 
-    public void MoveUp()
-    {
-        if (selectedUnit==null) return;
-        //todo: move up?
-    }
+    // public void MoveUp()
+    // {
+    //     if (selectedUnit==null) return;
+    //     //todo: move up?
+    // }
 }

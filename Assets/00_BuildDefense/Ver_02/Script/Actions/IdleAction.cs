@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleAction : MonoBehaviour, BaseAction
+public class IdleAction : BaseAction
 {
-    private ActionScheduler actionScheduler;
     
+    private ActionScheduler actionScheduler;
+
     private void Start() 
     {
         actionScheduler = GetComponent<ActionScheduler>();
+        StartAction();
     }
 
     public void StartAction()
@@ -16,7 +19,17 @@ public class IdleAction : MonoBehaviour, BaseAction
         actionScheduler.StartAction(this);
     }
 
-    public void Cancel()
+    public override void Cancel()
+    {
+        
+    }
+
+    public override void Wait()
+    {
+        
+    }
+
+    public override void Presume()
     {
         
     }

@@ -10,15 +10,38 @@ public class UnitMoveActionUI : MonoBehaviour
 
     [Header("Logic")]
     [SerializeField] UnitActionController logicController;
+    [SerializeField] List<UnitActionButtonUI> buttonLists = new();
+    Unit selectedUnit;
 
-    private void Start() 
+    private void OnEnable() 
     {
         logicController.OnSelectedUnit += SetUnitControllerActive;
     }
 
-    public void SetUnitControllerActive(bool active)
+    public void SetUnitControllerActive(Unit unit)
     {
-        playPanel.gameObject.SetActive(!active);
-        guiMain.SetActive(active);
+        playPanel.gameObject.SetActive(unit == null);
+        guiMain.SetActive(unit != null);
+
+        UpdateUI(unit);
+    }
+
+    private void UpdateUI(Unit unit)
+    {
+        if (unit == null) return;
+
+        var actionScheduler = unit.GetComponent<ActionScheduler>();
+        var actionType = actionScheduler.GetActionType();
+
+        UpdateButtonUI(actionType);
+        actionScheduler.OnActionChange += UpdateButtonUI;
+    }
+
+    private void UpdateButtonUI(ControlledActionType actionType)
+    {
+        foreach (var button in buttonLists)
+        {
+            button.UpdateUI(actionType);
+        }
     }
 }

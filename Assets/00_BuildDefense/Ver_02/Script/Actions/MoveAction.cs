@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : MonoBehaviour, BaseAction
+public class MoveAction : BaseAction
 {
     [SerializeField] private float moveSpeed = 2f;
     private PlayGrid playGrid;
@@ -15,12 +15,12 @@ public class MoveAction : MonoBehaviour, BaseAction
     private List<GridPosition> paths = new();
     private Pathfinding pathfinding;
     private bool setNextTarget = false;
-    public Action OnDoneMoving;
+    private bool isWaiting = false;
+    //public Action OnDoneMoving;
 
     private void Awake()
     {
         unit = GetComponent<Unit>();
-        unit.actionScheduler = GetComponent<ActionScheduler>();
     }
 
     private void Start()
@@ -55,6 +55,10 @@ public class MoveAction : MonoBehaviour, BaseAction
             float rotatingSpeed = 10f;
             transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotatingSpeed);
         }
+        else if (isWaiting)
+        {
+            StopWalking();
+        }
         else
         {
             setNextTarget = true;
@@ -73,13 +77,18 @@ public class MoveAction : MonoBehaviour, BaseAction
             //endpoint
             if (gridTargets.Count == 0)
             {
-                unit.animatorController.SetBool("isWalking", false);
-
-                //on done moving
-                OnDoneMoving?.Invoke();
+                StopWalking();
             }
             setNextTarget = false;
         }
+    }
+
+    private void StopWalking()
+    {
+        unit.animatorController.SetBool("isWalking", false);
+
+        //on done moving
+        OnComplete?.Invoke();
     }
 
     //todo: find another more efficient way??
@@ -150,8 +159,18 @@ public class MoveAction : MonoBehaviour, BaseAction
         return curGridPos;
     }
 
-    public void Cancel()
+    public override void Cancel()
     {
         gridTargets.Clear();
+    }
+
+    public override void Wait()
+    {
+        isWaiting = true;
+    }
+
+    public override void Presume()
+    {
+        isWaiting = false;
     }
 }

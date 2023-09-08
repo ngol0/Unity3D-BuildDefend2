@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,23 +6,15 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float healthPoints = 10f;
 
-    public System.Action OnDie;
+    Animator animator;
 
-    // public void TakeDamage(GameObject instigator, float damage)
-    // {
-    //     healthPoints.value = Mathf.Max(healthPoints.value - damage, 0);
+    public Action OnDie;
+    public Action OnClearPath;
 
-    //     if (IsDead())
-    //     {
-    //         onDie.Invoke();
-    //         AwardExperience(instigator);
-    //     }
-    //     else
-    //     {
-    //         takeDamage.Invoke(damage);
-    //     }
-    //     UpdateState();
-    // }
+    private void Start() 
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void TakeDamage(GameObject instigator, float damage)
     {
@@ -31,15 +23,18 @@ public class Health : MonoBehaviour
         if (IsDead())
         {
             OnDie?.Invoke();
-        }
-        else
-        {
-            //Debug.Log("invoke some damage event here");
+            animator.SetTrigger("onDie");
         }
     }
 
     public bool IsDead()
     {
         return healthPoints <= 0;
+    }
+
+    public void OnDisappear()
+    {
+        Destroy(gameObject);
+        OnClearPath?.Invoke();
     }
 }
