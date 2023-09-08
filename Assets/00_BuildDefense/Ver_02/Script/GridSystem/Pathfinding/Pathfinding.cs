@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Pathfinding : GridBase
 {
-    [SerializeField] PlayGrid playGrid;
-    [SerializeField] GridItemUI pathNodePrefab;
-    [SerializeField] LayerMask obstacleMask;
+    //[SerializeField] PlayGrid playGrid;
+    //[SerializeField] GridItemUI pathNodePrefab;
 
     GridSystem<PathNode> pathSystem;
     public GridSystem<PathNode> PathSystem => pathSystem;
@@ -27,6 +26,10 @@ public class Pathfinding : GridBase
             );
 
         //pathSystem.CreateGridUI(pathNodePrefab, transform);
+    }
+
+    private void Start() 
+    {
         InitialSetUp();
     }
 

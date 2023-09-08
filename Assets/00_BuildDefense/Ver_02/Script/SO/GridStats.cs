@@ -9,4 +9,6 @@ public class GridStats : ScriptableObject
     public int gridHeight = 7;
     public int cellSize = 20;
     public LayerMask obstacleMask;
+
+    public int max_x_play = 8;
 }

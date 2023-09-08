@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coordinateText: {fileID: 4216315379627104912}
+  visualMesh: {fileID: 2238943200428835034}
 --- !u!1001 &458643616925028268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,9 +370,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8525664180083753662, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5777318495532444521, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
+--- !u!23 &2238943200428835034 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8525664180083753662, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
+  m_PrefabInstance: {fileID: 7585025618282824292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2489723652518152513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5462350558344497957, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}

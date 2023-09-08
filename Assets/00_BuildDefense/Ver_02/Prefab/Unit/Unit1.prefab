@@ -2745,7 +2745,7 @@ GameObject:
   - component: {fileID: 4651549089586810157}
   - component: {fileID: 3527981468102879236}
   - component: {fileID: 8889894101464938224}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FilterEnemyBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

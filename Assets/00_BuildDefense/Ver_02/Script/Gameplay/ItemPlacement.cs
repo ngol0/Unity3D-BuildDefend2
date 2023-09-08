@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class ItemPlacement : MonoBehaviour
 {
@@ -17,14 +17,19 @@ public class ItemPlacement : MonoBehaviour
     public Action OnItemPlaced;
     public Action OnCancelPlacedItem;
     private InteractableData itemToPlaceInfo; //data of item to place
+    List<GridPosition> gridBoundary = new();
+
+    private void Start()
+    {
+        GetGridBoundary();
+    }
 
     public bool CanPlaceItem(Vector3 worldPos)
     {
         if (itemToPlaceInfo == null) return false;
         GridPosition gridPos = playGrid.GetGridPosition(worldPos);
-        GridItem gridItem = playGrid.GetGridItem(gridPos);
 
-        if (!gridItem.IsPlaceable()) return false;
+        if (!IsValidActionGridPosition(gridPos)) return false;
 
         InteractableItem item = Instantiate
             (itemToPlaceInfo.prefab,
@@ -50,17 +55,6 @@ public class ItemPlacement : MonoBehaviour
         }
     }
 
-    private void OnCompletePlacing()
-    {
-        playGrid.SetItemAtGrid(activePlaceableItem, activePlaceableItem.CurGridPos);
-
-        inventory.RemoveInteractableItem(itemToPlaceInfo);
-        OnItemPlaced?.Invoke(); //update inventory ui
-
-        SetItemToPlaceInfo(null);
-        activePlaceableItem = null;
-    }
-
     //bind to button at Confirmation Panel
     public void OnDecideToPlace(bool isPlaced)
     {
@@ -84,11 +78,43 @@ public class ItemPlacement : MonoBehaviour
     public void SetItemToPlaceInfo(InteractableData activeItemData)
     {
         itemToPlaceInfo = activeItemData;
+        playGrid.ShowValidGridPositionUI(gridBoundary);
     }
 
     public void CancelPlaceableItem()
     {
         itemToPlaceInfo = null;
         OnCancelPlacedItem?.Invoke();
+        playGrid.HideValidGridPositionUI(gridBoundary);
+    }
+
+    private void OnCompletePlacing()
+    {
+        playGrid.SetItemAtGrid(activePlaceableItem, activePlaceableItem.CurGridPos);
+
+        inventory.RemoveInteractableItem(itemToPlaceInfo);
+        OnItemPlaced?.Invoke(); //update inventory ui
+
+        SetItemToPlaceInfo(null);
+        activePlaceableItem = null;
+
+        playGrid.HideValidGridPositionUI(gridBoundary);
+    }
+
+    private List<GridPosition> GetGridBoundary()
+    {
+        for (int z = 0; z < playGrid.gridStats.gridHeight; z++)
+        {
+            GridPosition testGridPos = new GridPosition(playGrid.gridStats.max_x_play, z);
+            gridBoundary.Add(testGridPos);
+        }
+
+        return gridBoundary;
+    }
+
+    public bool IsValidActionGridPosition(GridPosition gridPosition)
+    {
+        return  gridPosition.x <= playGrid.gridStats.max_x_play
+                && playGrid.IsGridItemPlaceable(gridPosition);
     }
 }

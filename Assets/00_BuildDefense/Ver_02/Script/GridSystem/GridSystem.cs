@@ -28,22 +28,6 @@ public class GridSystem<TGridItem>
         }
     }
 
-    public void CreateGridUI(GridItemUI gridItemPrefab, Transform root)
-    {
-        for (int x = 0; x < gridWidth; x++)
-        {
-            for (int z = 0; z < gridHeight; z++)
-            {
-                GridPosition gridPos = new(x,z);
-
-                //create grid ui
-                GridItemUI gridItemUI = 
-                    GameObject.Instantiate<GridItemUI>(gridItemPrefab, GetWorldPosition(gridPos), Quaternion.identity, root);
-                gridItemUI.SetGridItem(GetGridItem(gridPos));
-            }
-        }
-    }
-
     public TGridItem GetGridItem(GridPosition gridPos)
     {
         return gridItemArray[gridPos.x, gridPos.z];

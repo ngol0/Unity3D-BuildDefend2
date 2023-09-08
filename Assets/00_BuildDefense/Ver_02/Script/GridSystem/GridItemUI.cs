@@ -6,6 +6,7 @@ public class GridItemUI : MonoBehaviour
 {
     object gridItem;
     [SerializeField] TextMesh coordinateText;
+    [SerializeField] MeshRenderer visualMesh;
     
     public virtual void SetGridItem(object gridItem)
     {
@@ -16,5 +17,15 @@ public class GridItemUI : MonoBehaviour
     protected virtual void Update() 
     {
         coordinateText.text = gridItem.ToString();
+    }
+
+    public void ShowValidMesh()
+    {
+        visualMesh.enabled = true;
+    }
+
+    public void HideValidMesh()
+    {
+        visualMesh.enabled = false;
     }
 }

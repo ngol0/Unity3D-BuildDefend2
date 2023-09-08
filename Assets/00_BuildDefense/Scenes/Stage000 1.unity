@@ -1478,11 +1478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridStats: {fileID: 11400000, guid: 89d0cf4d7f65ccd418415651f7de8c05, type: 2}
-  playGrid: {fileID: 1654398830}
-  pathNodePrefab: {fileID: 8082619177211339362, guid: 5bc6446b5a1db4a0fa10078338703fc7, type: 3}
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1792
 --- !u!4 &786488378
 Transform:
   m_ObjectHideFlags: 0
@@ -4709,7 +4704,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2026142931}
         m_TargetAssemblyTypeName: GameplayController, Assembly-CSharp
         m_MethodName: CancelItemSelection
         m_Mode: 1

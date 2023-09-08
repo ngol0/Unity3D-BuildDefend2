@@ -37,7 +37,7 @@ public class GameplayController : MonoBehaviour
             if (hitData.transform.TryGetComponent<InteractableItem>(out InteractableItem item))
             {
                 selectedItem = item;
-                itemPlacement.CancelPlaceableItem(); //cancel chosen placeable item when select item
+                itemPlacement.CancelPlaceableItem(); //cancel chosen inventory item when select item
             }
         }
         else
@@ -64,7 +64,6 @@ public class GameplayController : MonoBehaviour
         {
             if (itemPlacement.CanPlaceItem(hitData.point)) return true;
         }
-        CancelItemSelection();
         return false;
     }
 

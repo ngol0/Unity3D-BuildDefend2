@@ -93,7 +93,12 @@ public class MoveAction : BaseAction
     //todo: find another more efficient way??
     private void CheckObstaclesOnNextNode(GridPosition gridTarget)
     {
-        if (HasUnitOnTarget(gridTarget)) return;
+        if (HasUnitOnTarget(gridTarget)) 
+        {
+            unit.GetAction<IdleAction>().StartAction();
+            return;
+        }
+
         if (pathfinding.IsNodeWalkable(gridTarget))
         {
             targetPos = playGrid.GetWorldPosition(gridTarget);

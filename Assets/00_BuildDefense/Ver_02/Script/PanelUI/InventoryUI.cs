@@ -58,9 +58,7 @@ public class InventoryUI : MonoBehaviour
 
         if (btn == currentButton) //when clicked onto the selected button -> unselect
         {
-            currentButton.SetSelectedActive(false);
-            itemPlacement.SetItemToPlaceInfo(null);
-            currentButton = null;
+            itemPlacement.CancelPlaceableItem();
             return;
         }
 
@@ -68,9 +66,9 @@ public class InventoryUI : MonoBehaviour
         {
             currentButton.SetSelectedActive(false);
         }
+        
         btn.SetSelectedActive(true);
         currentButton = btn;
-
         itemPlacement.SetItemToPlaceInfo(currentButton.ItemData); //set item to place
     }
 

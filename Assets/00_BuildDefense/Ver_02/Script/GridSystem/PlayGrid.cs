@@ -8,6 +8,7 @@ public class PlayGrid : GridBase
     [SerializeField] GridItemUI gridItemPrefab;
 
     GridSystem<GridItem> gridSystem;
+    private GridItemUI[,] gridItemUIArray;
 
     private void Awake()
     {
@@ -15,16 +16,55 @@ public class PlayGrid : GridBase
         gridSystem = new GridSystem<GridItem>(gridStats.gridWidth, gridStats.gridHeight, gridStats.cellSize,
             (GridSystem<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
         );
+    }
 
-        gridSystem.CreateGridUI(gridItemPrefab, transform);
+    private void Start() 
+    {
+        CreateGridUI(gridItemPrefab, transform);
         InitialSetUp();
+    }
+
+    public void CreateGridUI(GridItemUI gridItemPrefab, Transform root)
+    {
+        gridItemUIArray = new GridItemUI[gridStats.gridWidth, gridStats.gridHeight];
+        for (int x = 0; x < gridStats.gridWidth; x++)
+        {
+            for (int z = 0; z < gridStats.gridHeight; z++)
+            {
+                GridPosition gridPos = new(x, z);
+
+                //create grid ui
+                GridItemUI gridItemUI =
+                    Instantiate<GridItemUI>(gridItemPrefab, GetWorldPosition(gridPos), Quaternion.identity, root);
+                gridItemUI.SetGridItem(GetGridItem(gridPos));
+                gridItemUI.HideValidMesh();
+
+                gridItemUIArray[x, z] = gridItemUI;
+            }
+        }
+    }
+    
+    public void ShowValidGridPositionUI(List<GridPosition> gridBoundary)
+    {
+        foreach (var position in gridBoundary)
+        {
+            gridItemUIArray[position.x, position.z].ShowValidMesh();
+        }
+    }
+
+    public void HideValidGridPositionUI(List<GridPosition> gridBoundary)
+    {
+        foreach (var position in gridBoundary)
+        {
+            gridItemUIArray[position.x, position.z].HideValidMesh();
+        }
     }
 
     public override void SetItemAtGrid(IGameItem item, GridPosition gridPos)
     {
         GetGridItem(gridPos).SetItem(item);
     }
-    
+
     public void RemoveItemAtGrid(GridPosition gridPos)
     {
         GetGridItem(gridPos).SetItem(null);
