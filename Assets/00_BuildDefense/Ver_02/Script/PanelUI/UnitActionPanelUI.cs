@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitMoveActionUI : MonoBehaviour
+public class UnitActionPanelUI : MonoBehaviour
 {
     [Header("UI Ref")]
     [SerializeField] GameObject guiMain;
@@ -11,8 +11,6 @@ public class UnitMoveActionUI : MonoBehaviour
     [Header("Logic")]
     [SerializeField] UnitActionController logicController;
     [SerializeField] List<UnitActionButtonUI> buttonLists = new();
-    Unit selectedUnit;
-
     private void OnEnable() 
     {
         logicController.OnSelectedUnit += SetUnitControllerActive;
