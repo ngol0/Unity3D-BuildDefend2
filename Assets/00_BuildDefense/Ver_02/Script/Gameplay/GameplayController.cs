@@ -64,6 +64,7 @@ public class GameplayController : MonoBehaviour
         {
             if (itemPlacement.CanPlaceItem(hitData.point)) return true;
         }
+        CancelItemSelection();
         return false;
     }
 

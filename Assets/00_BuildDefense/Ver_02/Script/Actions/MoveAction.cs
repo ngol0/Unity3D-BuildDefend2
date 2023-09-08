@@ -16,7 +16,6 @@ public class MoveAction : BaseAction
     private Pathfinding pathfinding;
     private bool setNextTarget = false;
     private bool isWaiting = false;
-    //public Action OnDoneMoving;
 
     private void Awake()
     {
