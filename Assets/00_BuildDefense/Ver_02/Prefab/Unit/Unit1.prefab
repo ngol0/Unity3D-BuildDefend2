@@ -170,9 +170,10 @@ GameObject:
   - component: {fileID: 5372640243740654964}
   - component: {fileID: 4301643880484100386}
   - component: {fileID: 2612831412590353813}
+  - component: {fileID: 8277813321157289615}
   m_Layer: 10
   m_Name: Unit1
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
+  distanceToEnemy: 10.1
 --- !u!114 &2778431855461614379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +347,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8277813321157289615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229415416295704301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af712d9e7a415942973b02f790706e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 10
 --- !u!1 &1254953055329427355
 GameObject:
   m_ObjectHideFlags: 0

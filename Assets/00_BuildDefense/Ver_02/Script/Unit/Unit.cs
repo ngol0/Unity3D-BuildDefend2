@@ -11,9 +11,12 @@ public class Unit : InteractableItem
     public Pathfinding PathfindingGrid => pathfindingGrid;
     public ActionScheduler actionScheduler;
 
+    public UnitData unitData;
+
     private void Awake()
     {
         actionArrays = GetComponents<BaseAction>();
+        unitData = itemData as UnitData;
     }
 
     private void Start() 

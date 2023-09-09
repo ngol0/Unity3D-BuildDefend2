@@ -7,12 +7,27 @@ public class FilterEnemy : MonoBehaviour
 {
     [SerializeField] Unit unit;
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
-        var enemy = other.GetComponent<Health>();
-        if (enemy && !enemy.IsDead())
+        if (other.tag == "Enemy")
         {
-            unit.GetAction<FightAction>().StartAction(enemy);
+            var enemy = other.GetComponent<Health>();
+            if (enemy && !enemy.IsDead())
+            {
+                unit.GetAction<FightAction>().StartAction(enemy);
+            }
         }
+        // else if (other.tag == "Unit")
+        // {
+        //     unit.GetAction<IdleAction>().StartAction();
+        // }
     }
+
+    // private void OnTriggerExit(Collider other) 
+    // {
+    //     if (other.tag == "Unit")
+    //     {
+    //         unit.GetAction<MoveAction>().StartAction();
+    //     }
+    // }
 }

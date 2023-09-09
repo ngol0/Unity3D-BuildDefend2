@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7319385274971562638}
   - component: {fileID: 4590316246103048811}
   - component: {fileID: 5777318495532444521}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GridVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

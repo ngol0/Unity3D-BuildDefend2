@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Path
-  - SNOW
-  - DIRT
+  - Enemy
+  - Unit
   layers:
   - Default
   - TransparentFX

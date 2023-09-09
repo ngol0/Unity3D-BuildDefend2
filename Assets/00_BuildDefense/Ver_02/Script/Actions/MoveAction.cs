@@ -44,7 +44,7 @@ public class MoveAction : BaseAction
 
     private void MoveToWaypoint()
     {
-        if (Vector3.Distance(transform.position, targetPos) > 0.1f)
+        if (Vector3.Distance(transform.position, targetPos) > unit.unitData.distanceOffset)
         {
             moveDirection = (targetPos - transform.position).normalized;
             transform.position += moveSpeed * Time.deltaTime * moveDirection;
@@ -56,7 +56,7 @@ public class MoveAction : BaseAction
         }
         else if (isWaiting)
         {
-            StopWalking();
+            unit.animatorController.SetBool("isWalking", false);
         }
         else
         {
@@ -76,18 +76,10 @@ public class MoveAction : BaseAction
             //endpoint
             if (gridTargets.Count == 0)
             {
-                StopWalking();
+                unit.animatorController.SetBool("isWalking", false);
             }
             setNextTarget = false;
         }
-    }
-
-    private void StopWalking()
-    {
-        unit.animatorController.SetBool("isWalking", false);
-
-        //on done moving
-        OnComplete?.Invoke();
     }
 
     //todo: find another more efficient way??
@@ -116,12 +108,7 @@ public class MoveAction : BaseAction
 
     private bool HasUnitOnTarget(GridPosition gridPos)
     {
-        if (playGrid.HasUnit(gridPos))
-        {
-            Cancel(); //todo: change into wait action?
-            return true;
-        }
-        return false;
+        return playGrid.HasUnit(gridPos);    
     }
 
     public void EnqueuePathPoints(List<GridPosition> positionTargets)

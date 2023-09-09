@@ -314,6 +314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridVisual
       objectReference: {fileID: 0}
+    - target: {fileID: 4091126026329904655, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462350558344497957, guid: 8ba8bef1f3eeb854190b94bf6bc3adc5, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class FightAction : BaseAction
 {
-
+    float attackingRange;
     private Unit unit;
     private Health enemy;
-    private bool canAttack = false;
 
     private void Start()
     {
         unit = GetComponent<Unit>();
-        unit.GetAction<MoveAction>().OnComplete += CanAttack;
+        attackingRange = unit.unitData.hitRange + unit.unitData.distanceOffset;
+        Debug.Log(attackingRange);
     }
 
     private void Update()
     {
-        if (canAttack)
+        if (IsInRange())
         {
             AttackBehavior();
         }
@@ -40,10 +40,9 @@ public class FightAction : BaseAction
         unit.animatorController.SetTrigger("startAttack");
     }
 
-    private void CanAttack()
+    private bool IsInRange()
     {
-        if (enemy == null) return;
-        canAttack = true;
+        return enemy!=null && Vector3.Distance(transform.position, enemy.transform.position) <= attackingRange;
     }
 
     private void AttackBehavior()
@@ -59,13 +58,12 @@ public class FightAction : BaseAction
         unit.animatorController.SetTrigger("stopAttack");
 
         enemy = null;
-        canAttack = false;
     }
 
     //animation event
     private void Hit()
     {
-        enemy.TakeDamage(gameObject, 5f);
+        enemy.TakeDamage(gameObject, unit.unitData.damageToDeal);
     }
 
     public override void Wait()
