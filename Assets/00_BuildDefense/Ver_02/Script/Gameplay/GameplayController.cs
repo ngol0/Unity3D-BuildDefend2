@@ -39,12 +39,10 @@ public class GameplayController : MonoBehaviour
                 selectedItem = item;
                 itemPlacement.CancelPlaceableItem(); //cancel chosen inventory item when select item
             }
-            Debug.Log(interactableMask.value);
         }
         else
         {
             selectedItem = null;
-            Debug.Log(222);
         }
 
         if (OnItemSelected) OnItemSelected.Raise(selectedItem);
@@ -64,7 +62,6 @@ public class GameplayController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hitData, float.MaxValue, gridMask))
         {
-            Debug.Log("Not grid mask?");
             if (itemPlacement.CanPlaceItem(hitData.point)) return true;
         }
         

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06d009bf9a3fe0b4fafc3f2e4ee79922, type: 3}
-  m_Name: Unit1
+  m_Name: Barbarian
   m_EditorClassIdentifier: 
-  nameString: Tank
-  prefab: {fileID: 2778431855461614377, guid: f1e840a91efc4d24fafe3d2bd132ae32, type: 3}
+  nameString: Barbarian
+  prefab: {fileID: 5319570217243604846, guid: 24848555d4c8d324fb3a15c604a29d7a, type: 3}
   sprite: {fileID: 21300000, guid: 982b97ae0927c489680ed733d76c4573, type: 3}
   loadingTime: 6
   resourceCostToBuild:
@@ -21,7 +21,6 @@ MonoBehaviour:
     amount: 20
   - resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
     amount: 15
-  health: 0
+  moveSpeed: 2
   distanceOffset: 0.1
-  damageToDeal: 2
-  hitRange: 10
+  health: 0

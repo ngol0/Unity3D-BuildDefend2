@@ -11,11 +11,11 @@ public class Unit : InteractableItem
     public Pathfinding PathfindingGrid => pathfindingGrid;
     public ActionScheduler actionScheduler;
 
-    public UnitData unitData;
+    [HideInInspector] public UnitData unitData;
 
     private void Awake()
     {
-        actionArrays = GetComponents<BaseAction>();
+        actionArrays = GetComponentsInChildren<BaseAction>();
         unitData = itemData as UnitData;
     }
 

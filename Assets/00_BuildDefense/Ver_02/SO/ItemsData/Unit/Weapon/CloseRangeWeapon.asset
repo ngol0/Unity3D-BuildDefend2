@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622547c702e365c46a0a5dabcd0bc8f9, type: 3}
-  m_Name: GridStats
+  m_Script: {fileID: 11500000, guid: 47d75cd8200592941bc655ef8aba1f1b, type: 3}
+  m_Name: CloseRangeWeapon
   m_EditorClassIdentifier: 
-  gridWidth: 20
-  gridHeight: 5
-  cellSize: 10
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1792
-  max_x_play: 8
+  damage: 2
+  animationStartString: startCloseRange
+  animationStopString: stopCloseRange

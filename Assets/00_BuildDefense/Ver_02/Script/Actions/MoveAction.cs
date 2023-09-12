@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    [SerializeField] private float moveSpeed = 2f;
     private PlayGrid playGrid;
     private Unit unit;
     private Vector3 targetPos;
@@ -19,7 +18,8 @@ public class MoveAction : BaseAction
 
     private void Awake()
     {
-        unit = GetComponent<Unit>();
+        unit = GetComponentInParent<Unit>();
+        Debug.Log(unit.name);
     }
 
     private void Start()
@@ -47,7 +47,7 @@ public class MoveAction : BaseAction
         if (Vector3.Distance(transform.position, targetPos) > unit.unitData.distanceOffset)
         {
             moveDirection = (targetPos - transform.position).normalized;
-            transform.position += moveSpeed * Time.deltaTime * moveDirection;
+            unit.transform.position += unit.unitData.moveSpeed * Time.deltaTime * moveDirection;
 
             unit.animatorController.SetBool("isWalking", true);
 
@@ -158,6 +158,7 @@ public class MoveAction : BaseAction
     public override void Wait()
     {
         isWaiting = true;
+        Debug.Log(222);
     }
 
     public override void Presume()

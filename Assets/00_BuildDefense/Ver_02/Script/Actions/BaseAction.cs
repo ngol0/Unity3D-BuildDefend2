@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class BaseAction : MonoBehaviour
 {
-    //void StartAction();
-    //public abstract void StartAction();
     public abstract void Cancel();
     public abstract void Wait();
     public Action OnComplete;

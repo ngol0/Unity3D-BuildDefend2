@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class IdleAction : BaseAction
 {
-    
     private ActionScheduler actionScheduler;
 
     private void Start() 

@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Lam.DefenderBuilder.Enemies;
 using UnityEngine;
 
 public class FilterEnemy : MonoBehaviour
 {
-    [SerializeField] Unit unit;
+    Unit unit;
+    [SerializeField] WeaponBase weaponType;
+
+    private void Awake() 
+    {
+        unit = GetComponentInParent<Unit>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,20 +17,8 @@ public class FilterEnemy : MonoBehaviour
             var enemy = other.GetComponent<Health>();
             if (enemy && !enemy.IsDead())
             {
-                unit.GetAction<FightAction>().StartAction(enemy);
+                if (unit) unit.GetAction<FightAction>().StartAction(enemy, weaponType, unit);
             }
         }
-        // else if (other.tag == "Unit")
-        // {
-        //     unit.GetAction<IdleAction>().StartAction();
-        // }
     }
-
-    // private void OnTriggerExit(Collider other) 
-    // {
-    //     if (other.tag == "Unit")
-    //     {
-    //         unit.GetAction<MoveAction>().StartAction();
-    //     }
-    // }
 }

@@ -28,7 +28,7 @@ public class UnitActionPanelUI : MonoBehaviour
     {
         if (unit == null) return;
 
-        var actionScheduler = unit.GetComponent<ActionScheduler>();
+        var actionScheduler = unit.actionScheduler;
         var actionType = actionScheduler.GetActionType();
 
         UpdateButtonUI(actionType);
