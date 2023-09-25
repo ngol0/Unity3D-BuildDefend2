@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d009bf9a3fe0b4fafc3f2e4ee79922, type: 3}
   m_Name: Barbarian
   m_EditorClassIdentifier: 
-  nameString: Barbarian
+  nameString: Barba
   prefab: {fileID: 5319570217243604846, guid: 24848555d4c8d324fb3a15c604a29d7a, type: 3}
   sprite: {fileID: 21300000, guid: 982b97ae0927c489680ed733d76c4573, type: 3}
   loadingTime: 6

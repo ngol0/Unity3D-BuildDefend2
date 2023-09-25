@@ -8,6 +8,7 @@ public class PlaceableButtonUI : MonoBehaviour
     [SerializeField] Image selectedBG;
     [SerializeField] Image overlayBG;
     [SerializeField] Button btn;
+    [SerializeField] Text nameText;
 
     LoadingItem loading;
 
@@ -42,6 +43,7 @@ public class PlaceableButtonUI : MonoBehaviour
     public void SetButtonUI()
     {
         icon.sprite = itemData.sprite;
+        nameText.text = itemData.nameString;
         selectedBG.enabled = false;
     }
 

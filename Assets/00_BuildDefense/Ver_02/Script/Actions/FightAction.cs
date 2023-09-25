@@ -27,7 +27,7 @@ public class FightAction : BaseAction
         this.unit = unit;
         
         Debug.Log(":::Prepare to attack");
-        unit.actionScheduler.QueueAction(this);
+        unit.actionScheduler.StartFighting(this);
 
         this.enemy = enemy;
         enemy.OnDie += Cancel;

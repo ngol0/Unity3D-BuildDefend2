@@ -7,14 +7,24 @@ public class ActionScheduler : MonoBehaviour
 {
     BaseAction currentAction;
     public Action<ControlledActionType> OnActionChange;
+    bool isFighting;
 
     public void StartAction(BaseAction action)
     {
         if (currentAction == action) return;
-        if (currentAction != null) currentAction.Cancel();
+        
+        if (currentAction != null) 
+        {
+            currentAction.Cancel();
+        }
         currentAction = action;
-
         OnActionChange?.Invoke(currentAction.actionType);
+
+        if (isFighting) 
+        {
+            Debug.Log("waiting???");
+            currentAction.Wait();
+        }
     }
 
     public void CancelAllAction()
@@ -22,19 +32,26 @@ public class ActionScheduler : MonoBehaviour
         StartAction(null);
     }
 
-    public void QueueAction(BaseAction action)
+    public void StartFighting(BaseAction fightAction)
     {
-        if (currentAction == action) return;
+        if (currentAction == fightAction) return;
 
         if (currentAction != null)
         {
             currentAction.Wait();
-            action.OnComplete += currentAction.Presume;
+            fightAction.OnComplete += currentAction.Presume;
+            fightAction.OnComplete += OnDoneFighting;
         }
+        isFighting = true;
     }
 
     public ControlledActionType GetActionType()
     {
         return currentAction.actionType;
+    }
+
+    private void OnDoneFighting()
+    {
+        isFighting = false;
     }
 }

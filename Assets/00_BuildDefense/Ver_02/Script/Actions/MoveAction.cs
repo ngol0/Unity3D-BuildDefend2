@@ -158,7 +158,6 @@ public class MoveAction : BaseAction
     public override void Wait()
     {
         isWaiting = true;
-        Debug.Log(222);
     }
 
     public override void Presume()

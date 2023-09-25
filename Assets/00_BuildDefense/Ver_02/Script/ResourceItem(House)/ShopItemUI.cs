@@ -10,6 +10,7 @@ public class ShopItemUI : MonoBehaviour
 
     [SerializeField] Image spriteImg;
     [SerializeField] Button btn;
+    [SerializeField] Text nameText;
 
     public void SetData(InteractableData data, Shop shop)
     {
@@ -21,6 +22,7 @@ public class ShopItemUI : MonoBehaviour
     private void SetUI()
     {
         spriteImg.sprite = data.sprite;
+        nameText.text = data.nameString;
     }
 
     public void OnShopItemClicked()

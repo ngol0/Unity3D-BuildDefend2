@@ -1331,8 +1331,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4063394816883655313}
-  - component: {fileID: 2238552504647257576}
   - component: {fileID: 2464555603516562491}
+  - component: {fileID: 2238552504647257576}
   m_Layer: 0
   m_Name: FarRangeFilter
   m_TagString: Untagged
@@ -1355,19 +1355,6 @@ Transform:
   m_Father: {fileID: 4790423719433579211}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2238552504647257576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072207482282851785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f883b4d8f27a8448f104b4bb6e825f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: {fileID: 11400000, guid: 4880a1b8fec222447ac86e72b5bed76a, type: 2}
 --- !u!65 &2464555603516562491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1381,6 +1368,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 50}
   m_Center: {x: 0, y: 2, z: 40}
+--- !u!114 &2238552504647257576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072207482282851785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f883b4d8f27a8448f104b4bb6e825f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: {fileID: 11400000, guid: 4880a1b8fec222447ac86e72b5bed76a, type: 2}
 --- !u!1 &3452404546532274068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,7 +2990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 913838127177209861, guid: a7c9ef6991ead4076987525805022874, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 913838127177209861, guid: a7c9ef6991ead4076987525805022874, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3051,7 +3051,7 @@ PrefabInstance:
     - target: {fileID: 8706764596476744011, guid: a7c9ef6991ead4076987525805022874, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2546053343587662557}
     - target: {fileID: 9198084897189856559, guid: a7c9ef6991ead4076987525805022874, type: 3}
       propertyPath: m_Name
       value: UnitSelectionUI
