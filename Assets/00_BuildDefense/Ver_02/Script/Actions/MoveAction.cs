@@ -44,23 +44,27 @@ public class MoveAction : BaseAction
 
     private void MoveToWaypoint()
     {
-        if (Vector3.Distance(transform.position, targetPos) > unit.unitData.distanceOffset)
-        {
-            moveDirection = (targetPos - transform.position).normalized;
-            unit.transform.position += unit.unitData.moveSpeed * Time.deltaTime * moveDirection;
-
-            unit.animatorController.SetBool("isWalking", true);
-
-            float rotatingSpeed = 10f;
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotatingSpeed);
-        }
-        else if (isWaiting)
+        if (isWaiting)
         {
             unit.animatorController.SetBool("isWalking", false);
         }
         else
         {
-            setNextTarget = true;
+            if (Vector3.Distance(transform.position, targetPos) > unit.unitData.distanceOffset)
+            {
+                moveDirection = (targetPos - transform.position).normalized;
+                unit.transform.position += unit.unitData.moveSpeed * Time.deltaTime * moveDirection;
+
+                unit.animatorController.SetBool("isWalking", true);
+
+                float rotatingSpeed = 10f;
+                transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotatingSpeed);
+            }
+
+            else
+            {
+                setNextTarget = true;
+            }
         }
     }
 
@@ -85,7 +89,7 @@ public class MoveAction : BaseAction
     //todo: find another more efficient way??
     private void CheckObstaclesOnNextNode(GridPosition gridTarget)
     {
-        if (HasUnitOnTarget(gridTarget)) 
+        if (HasUnitOnTarget(gridTarget))
         {
             unit.GetAction<IdleAction>().StartAction();
             return;
@@ -108,7 +112,7 @@ public class MoveAction : BaseAction
 
     private bool HasUnitOnTarget(GridPosition gridPos)
     {
-        return playGrid.HasUnit(gridPos);    
+        return playGrid.HasUnit(gridPos);
     }
 
     public void EnqueuePathPoints(List<GridPosition> positionTargets)

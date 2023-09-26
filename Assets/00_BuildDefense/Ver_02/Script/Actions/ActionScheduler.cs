@@ -22,7 +22,6 @@ public class ActionScheduler : MonoBehaviour
 
         if (isFighting) 
         {
-            Debug.Log("waiting???");
             currentAction.Wait();
         }
     }
@@ -39,7 +38,6 @@ public class ActionScheduler : MonoBehaviour
         if (currentAction != null)
         {
             currentAction.Wait();
-            fightAction.OnComplete += currentAction.Presume;
             fightAction.OnComplete += OnDoneFighting;
         }
         isFighting = true;
@@ -53,5 +51,6 @@ public class ActionScheduler : MonoBehaviour
     private void OnDoneFighting()
     {
         isFighting = false;
+        currentAction.Presume();
     }
 }
