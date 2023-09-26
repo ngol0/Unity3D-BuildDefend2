@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Lam.DefenderBuilder.Resource;
 
 [CreateAssetMenu(menuName = "InteractableData/ResourceItem")]
 public class ResourceItemData : InteractableData

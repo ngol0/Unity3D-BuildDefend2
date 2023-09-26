@@ -1,5 +1,4 @@
 using UnityEngine;
-using Lam.DefenderBuilder.Tower;
 using UnityEngine.Events;
 
 public class InteractableTypeEventListener : MonoBehaviour
