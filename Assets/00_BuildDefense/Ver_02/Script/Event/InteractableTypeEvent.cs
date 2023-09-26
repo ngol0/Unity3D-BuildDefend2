@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Lam.DefenderBuilder.Tower;
 
 [CreateAssetMenu(menuName = "CustomizedEvents/HouseTypeEvent")]
 public class InteractableTypeEvent : ScriptableObject
