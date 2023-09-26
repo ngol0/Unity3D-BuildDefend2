@@ -982,9 +982,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818529959}
     m_Modifications:
+    - target: {fileID: 2800576642029454022, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398182833678116541, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4425616077633998674, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
       propertyPath: m_Name
       value: CrystalResourceNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425616077633998674, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4425616077633998685, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
       propertyPath: m_RootOrder
@@ -1029,6 +1041,18 @@ PrefabInstance:
     - target: {fileID: 4425616077633998685, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696211051586167484, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358978794303554151, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322491691984696459, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8314815381837581894, guid: 6c0c3e119bbc44215bb8f1bf1d874ca2, type: 3}
       propertyPath: m_Radius
@@ -3544,6 +3568,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818529959}
     m_Modifications:
+    - target: {fileID: 2401850565969655884, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794894493752927060, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138184959679817085, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3211885315667772003, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3591,6 +3627,14 @@ PrefabInstance:
     - target: {fileID: 3211885315667772012, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
       propertyPath: m_Name
       value: WoodResourceNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211885315667772012, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525802769178446798, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9566dc9707c594436808da5c4c89a52b, type: 3}
