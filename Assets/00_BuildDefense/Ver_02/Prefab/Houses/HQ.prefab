@@ -1023,6 +1023,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79010d41294da784486760a635ad66b8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11d05fa54716d8e4b8b6f36c07fb3f20, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 672de192096a4d141a1e8190197f5bf1, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80655b3417264b94aaff329bc235ce76, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 913c04be27fb65c48b5f84cd213c9a75, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a12f69458ed3634782d2e3efb1774c6, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83b9ca1ebbebc6f4db7272ad108836ce, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1b468eff4554a34caa92905d06d96ef, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[8]
+      value: 
+      objectReference: {fileID: 2100000, guid: dd9d767005a9fce4ca45d9b7fee590a3, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
+      propertyPath: m_Materials.Array.data[9]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3685485555790848a06558b67516490, type: 2}
     - target: {fileID: 919132149155446097, guid: 47e61ae317064b74aa3f3fcc1b49cabe, type: 3}
       propertyPath: m_Name
       value: Bell_Tower

@@ -12,7 +12,6 @@ public class Pathfinding : GridBase
     public HexGridSystem<PathNode> PathSystem => pathSystem;
 
     private const int STRAIGHT_MOVE_COST = 10;
-    private const int DIAGONAL_COST = 14;
 
     private void Awake()
     {
@@ -68,7 +67,7 @@ public class Pathfinding : GridBase
         ResetPathfindingData();
 
         startNode.SetGCost(0);
-        startNode.SetHCost(CalculateDistance(startPos, endPos));
+        startNode.SetHCost(CalculateHeuristicDistance(startPos, endPos));
         startNode.CalculateFCost();
 
         while (openList.Count > 0)
@@ -98,14 +97,16 @@ public class Pathfinding : GridBase
                     continue;
                 }
 
-                int currentGCost = currentNode.GCost + 
-                    CalculateDistance(currentNode.GridPos, neighborNode.GridPos);
+                // int currentGCost = currentNode.GCost + 
+                //     CalculateHeuristicDistance(currentNode.GridPos, neighborNode.GridPos);
+
+                int currentGCost = currentNode.GCost + STRAIGHT_MOVE_COST;
 
                 if (currentGCost < neighborNode.GCost)
                 {
                     //reset g h and f cost
                     neighborNode.SetGCost(currentGCost);
-                    neighborNode.SetHCost(CalculateDistance(neighborNode.GridPos, endPos));
+                    neighborNode.SetHCost(CalculateHeuristicDistance(neighborNode.GridPos, endPos));
                     neighborNode.CalculateFCost();
                     neighborNode.SetCameFromNode(currentNode);
 
@@ -174,12 +175,13 @@ public class Pathfinding : GridBase
     }
 
     //diagnoal distance function for heuristics cost (HCost) & GCost
-    private int CalculateDistance(GridPosition currentPos, GridPosition endPos)
+    private int CalculateHeuristicDistance(GridPosition currentPos, GridPosition endPos)
     {
-        int dx = Mathf.Abs(currentPos.x - endPos.x);
-        int dy = Mathf.Abs(currentPos.z - endPos.z);
+        // int dx = Mathf.Abs(currentPos.x - endPos.x);
+        // int dy = Mathf.Abs(currentPos.z - endPos.z);
 
-        return STRAIGHT_MOVE_COST*(dx+dy) + (DIAGONAL_COST - 2*STRAIGHT_MOVE_COST)*Mathf.Min(dx,dy);
+        // return STRAIGHT_MOVE_COST*(dx+dy) + (DIAGONAL_COST - 2*STRAIGHT_MOVE_COST)*Mathf.Min(dx,dy);
+        return Mathf.RoundToInt(STRAIGHT_MOVE_COST * Vector3.Distance(GetWorldPosition(currentPos), GetWorldPosition(endPos)));
     }
 
     private List<PathNode> GetNeighbourList(PathNode currentNode)
@@ -192,17 +194,28 @@ public class Pathfinding : GridBase
         {
             for (int z = -1; z <=1; z++)
             {
-                if (x == 0 && z == 0) continue;
-                GridPosition potentialNeighbor = gridPosition + new GridPosition(x,z);
-
-                if (pathSystem.IsValidGridPos(potentialNeighbor))
-                {
-                    neighbourList.Add(GetNode(potentialNeighbor));
-                }
+                if (Mathf.Abs(x) == Mathf.Abs(z)) continue;
+                GridPosition potentialNeighbor = gridPosition + new GridPosition(x, z);
+                AddToNeighborList(neighbourList, potentialNeighbor);
             }
         }
 
+        bool oddRow = gridPosition.z % 2 == 1;
+        GridPosition anotherPotentialGrid1 = gridPosition + new GridPosition(oddRow ? 1 : -1, 1);
+        GridPosition anotherPotentialGrid2 = gridPosition + new GridPosition(oddRow ? 1 : -1, -1);
+
+        AddToNeighborList(neighbourList, anotherPotentialGrid1);
+        AddToNeighborList(neighbourList, anotherPotentialGrid2);
+
         return neighbourList;
+    }
+
+    private void AddToNeighborList(List<PathNode> neighbourList, GridPosition potentialNeighbor)
+    {
+        if (pathSystem.IsValidGridPos(potentialNeighbor))
+        {
+            neighbourList.Add(GetNode(potentialNeighbor));
+        }
     }
 
     public PathNode GetNode(GridPosition gridPos) => pathSystem.GetGridItem(gridPos);

@@ -454,6 +454,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c261a07263c8a24090e5e540d4f0966, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 672de192096a4d141a1e8190197f5bf1, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c261a07263c8a24090e5e540d4f0966, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca094b9f848f54e4bb061ef137ebf2cb, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c261a07263c8a24090e5e540d4f0966, type: 3}
       propertyPath: m_Name
       value: Blacksmith
