@@ -29,6 +29,7 @@ public class ItemPlacement : MonoBehaviour
         if (itemToPlaceInfo == null) return false;
         GridPosition gridPos = playGrid.GetGridPosition(worldPos);
 
+        if (!playGrid.IsValidGridPos(gridPos)) return false;
         if (!IsValidActionGridPosition(gridPos)) return false;
 
         InteractableItem item = Instantiate
@@ -78,14 +79,14 @@ public class ItemPlacement : MonoBehaviour
     public void SetItemToPlaceInfo(InteractableData activeItemData)
     {
         itemToPlaceInfo = activeItemData;
-        playGrid.ShowValidGridPositionUI(gridBoundary);
+        playGrid.ShowValidGridPositionUI();
     }
 
     public void CancelPlaceableItem()
     {
         itemToPlaceInfo = null;
         OnCancelPlacedItem?.Invoke();
-        playGrid.HideValidGridPositionUI(gridBoundary);
+        playGrid.HideValidGridPositionUI();
     }
 
     private void OnCompletePlacing()
@@ -98,7 +99,7 @@ public class ItemPlacement : MonoBehaviour
         SetItemToPlaceInfo(null);
         activePlaceableItem = null;
 
-        playGrid.HideValidGridPositionUI(gridBoundary);
+        playGrid.HideValidGridPositionUI();
     }
 
     private List<GridPosition> GetGridBoundary()

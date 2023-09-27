@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GridItem
 {
-    private GridSystem<GridItem> gridSystem;
+    private HexGridSystem<GridItem> gridSystem;
     private GridPosition gridPosition;
     private IGameItem item;
     public IGameItem Item => item;
 
-    public GridItem(GridSystem<GridItem> gridSystem, GridPosition gridPosition)
+    public GridItem(HexGridSystem<GridItem> gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;

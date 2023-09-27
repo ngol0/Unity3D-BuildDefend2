@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GridStats
   m_EditorClassIdentifier: 
   gridWidth: 20
-  gridHeight: 5
+  gridHeight: 6
   cellSize: 10
   obstacleMask:
     serializedVersion: 2

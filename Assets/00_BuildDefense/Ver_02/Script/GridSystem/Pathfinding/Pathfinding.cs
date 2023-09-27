@@ -8,8 +8,8 @@ public class Pathfinding : GridBase
     //[SerializeField] PlayGrid playGrid;
     //[SerializeField] GridItemUI pathNodePrefab;
 
-    GridSystem<PathNode> pathSystem;
-    public GridSystem<PathNode> PathSystem => pathSystem;
+    HexGridSystem<PathNode> pathSystem;
+    public HexGridSystem<PathNode> PathSystem => pathSystem;
 
     private const int STRAIGHT_MOVE_COST = 10;
     private const int DIAGONAL_COST = 14;
@@ -17,9 +17,9 @@ public class Pathfinding : GridBase
     private void Awake()
     {
         //delegate using anonymous function
-        pathSystem = new GridSystem<PathNode>
+        pathSystem = new HexGridSystem<PathNode>
             (gridStats.gridWidth, gridStats.gridHeight, gridStats.cellSize,
-                delegate (GridSystem<PathNode> g, GridPosition gridPos)
+                delegate (HexGridSystem<PathNode> g, GridPosition gridPos)
                 {
                     return new PathNode(g, gridPos);
                 }

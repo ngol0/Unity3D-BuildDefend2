@@ -7,14 +7,14 @@ public class PlayGrid : GridBase
     [Header("UI")]
     [SerializeField] GridItemUI gridItemPrefab;
 
-    GridSystem<GridItem> gridSystem;
+    HexGridSystem<GridItem> gridSystem;
     private GridItemUI[,] gridItemUIArray;
 
     private void Awake()
     {
         //delegate using lambda
-        gridSystem = new GridSystem<GridItem>(gridStats.gridWidth, gridStats.gridHeight, gridStats.cellSize,
-            (GridSystem<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
+        gridSystem = new HexGridSystem<GridItem>(gridStats.gridWidth, gridStats.gridHeight, gridStats.cellSize,
+            (HexGridSystem<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
         );
     }
 
@@ -26,8 +26,8 @@ public class PlayGrid : GridBase
 
     public void CreateGridUI(GridItemUI gridItemPrefab, Transform root)
     {
-        gridItemUIArray = new GridItemUI[gridStats.gridWidth, gridStats.gridHeight];
-        for (int x = 0; x < gridStats.gridWidth; x++)
+        gridItemUIArray = new GridItemUI[gridStats.max_x_play, gridStats.gridHeight];
+        for (int x = 0; x < gridStats.max_x_play; x++)
         {
             for (int z = 0; z < gridStats.gridHeight; z++)
             {
@@ -44,19 +44,19 @@ public class PlayGrid : GridBase
         }
     }
     
-    public void ShowValidGridPositionUI(List<GridPosition> gridBoundary)
+    public void ShowValidGridPositionUI()
     {
-        foreach (var position in gridBoundary)
+        foreach (var position in gridItemUIArray)
         {
-            gridItemUIArray[position.x, position.z].ShowValidMesh();
+            position.ShowValidMesh();
         }
     }
 
-    public void HideValidGridPositionUI(List<GridPosition> gridBoundary)
+    public void HideValidGridPositionUI()
     {
-        foreach (var position in gridBoundary)
+        foreach (var position in gridItemUIArray)
         {
-            gridItemUIArray[position.x, position.z].HideValidMesh();
+            position.HideValidMesh();
         }
     }
 
@@ -74,6 +74,11 @@ public class PlayGrid : GridBase
     {
         RemoveItemAtGrid(fromGridPos);
         SetItemAtGrid(item, toGridPos);
+    }
+
+    public bool IsValidGridPos(GridPosition gridPos)
+    {
+        return  gridSystem.IsValidGridPos(gridPos);
     }
 
     public bool IsGridItemPlaceable(GridPosition gridPos)

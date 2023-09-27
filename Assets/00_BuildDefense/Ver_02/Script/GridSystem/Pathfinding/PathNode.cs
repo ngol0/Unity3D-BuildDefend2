@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathNode
 {
-    private GridSystem<PathNode> gridSystem;
+    private HexGridSystem<PathNode> gridSystem;
     private GridPosition gridPosition;
     public GridPosition GridPos => gridPosition;
     private int fCost;
@@ -20,7 +20,7 @@ public class PathNode
 
     private IGameItem item;
 
-    public PathNode(GridSystem<PathNode> gridSystem, GridPosition gridPosition)
+    public PathNode(HexGridSystem<PathNode> gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
