@@ -29,7 +29,7 @@ public class InventoryUI : MonoBehaviour
         itemPlacement.OnTryPlacingResourceItem += DeactivateUI;
         itemPlacement.OnDoneDeciding += SetUIActive;
 
-        inventory.OnAddComplete += InitNewItem;
+        //shop.OnAddComplete += Init;
     }
 
     private void Start() 
@@ -94,13 +94,13 @@ public class InventoryUI : MonoBehaviour
     {
         if (currentButton == null) return;
 
-        currentButton.gameObject.SetActive(false);
+        Destroy(currentButton.gameObject);
         currentButton = null;
     }
 
-    public void InitNewItem(InteractableData data)
+    public void InitItemInInventory(InteractableData data)
     {
-        var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
+        var btn = Instantiate(buttonPrefab, rootSpawn);
         btn.SetData(data, loading);
         btn.gameObject.SetActive(true);
 

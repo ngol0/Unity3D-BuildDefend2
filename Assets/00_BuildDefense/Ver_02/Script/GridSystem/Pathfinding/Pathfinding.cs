@@ -97,9 +97,6 @@ public class Pathfinding : GridBase
                     continue;
                 }
 
-                // int currentGCost = currentNode.GCost + 
-                //     CalculateHeuristicDistance(currentNode.GridPos, neighborNode.GridPos);
-
                 int currentGCost = currentNode.GCost + STRAIGHT_MOVE_COST;
 
                 if (currentGCost < neighborNode.GCost)
@@ -177,10 +174,6 @@ public class Pathfinding : GridBase
     //diagnoal distance function for heuristics cost (HCost) & GCost
     private int CalculateHeuristicDistance(GridPosition currentPos, GridPosition endPos)
     {
-        // int dx = Mathf.Abs(currentPos.x - endPos.x);
-        // int dy = Mathf.Abs(currentPos.z - endPos.z);
-
-        // return STRAIGHT_MOVE_COST*(dx+dy) + (DIAGONAL_COST - 2*STRAIGHT_MOVE_COST)*Mathf.Min(dx,dy);
         return Mathf.RoundToInt(STRAIGHT_MOVE_COST * Vector3.Distance(GetWorldPosition(currentPos), GetWorldPosition(endPos)));
     }
 

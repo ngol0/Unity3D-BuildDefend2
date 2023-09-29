@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Shop : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Shop : MonoBehaviour
     [Header("Resources and Inventory")]
     [SerializeField] ResourceController resourceController;
     [SerializeField] InventorySO inventory;
+    [SerializeField] InventoryUI inventoryUI;
+
+    public Action<InteractableData> OnAddComplete;
 
     public void SetSelectedItem(InteractableItem item)
     {
@@ -20,7 +24,7 @@ public class Shop : MonoBehaviour
 
     public void OnTransaction(InteractableData itemData)
     {
-        inventory.AddToInteractableList(itemData);
+        inventory.AddToInteractableList(itemData, inventoryUI.InitItemInInventory);
         resourceController.SpendResource(itemData.resourceCostToBuild);
     }
 }

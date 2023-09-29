@@ -8,13 +8,13 @@ public class InventorySO : ScriptableObject
 {
     const int MAX_SLOTS = 9;
     public List<InteractableData> interactableItemList;
-    public Action<InteractableData> OnAddComplete;
 
-    public void AddToInteractableList(InteractableData item)
+    public void AddToInteractableList(InteractableData item, Action<InteractableData> UpdateUI)
     {
         if (interactableItemList.Count == MAX_SLOTS) return;
         interactableItemList.Add(item);
-        OnAddComplete?.Invoke(item);
+
+        UpdateUI(item);
     }
 
     public void RemoveInteractableItem(InteractableData item)
