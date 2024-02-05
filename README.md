@@ -7,11 +7,15 @@ This version is inspired by the game `Shogun` developed by SEGA. It will include
 ## Technical features:
 - Build resource towers and collect resources
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/0.gif" width="900" title="skill 1 demo">
+  
 - Buy units / towers from built towers
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/1.gif" width="900" title="skill 1 demo">
+  
 - Unit movement commands with A* pathfinding
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/2.gif" width="900" title="skill 1 demo">
+  
 - Unit fighting systems/weapon
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/3.gif" width="900" title="skill 1 demo">
+  
 
 
