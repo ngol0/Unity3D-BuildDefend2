@@ -11,7 +11,7 @@ This version is inspired by the game Shogun developed by SEGA. It includes build
   Once towers are built, player can select different towers to buy different units/towers using the resources they've collected.
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/1.gif" width="900" title="skill 1 demo">
   
-**- Unit movement commands with A* pathfinding:**
+**- Unit movement commands with A-star pathfinding:**
   Each unit can be commanded to either move forward or stop. Unit will find their way to the end goal using A* pathfinding algorithm. 
   <img src="https://github.com/ngol0/Unity3D-BuildDefend2/blob/feature/hex-grid/2.gif" width="900" title="skill 1 demo">
   
